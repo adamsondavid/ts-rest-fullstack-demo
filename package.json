@@ -15,7 +15,9 @@
     "build:vercel": "vite build",
     "build:netlify": "vite build && esbuild src/main.prod.netlify.ts --bundle --minify --platform=neutral --outfile=netlify/edge-functions/index.js",
     "build:cloudflare": "vite build && esbuild src/main.prod.cloudflare.ts --bundle --minify --platform=neutral --outfile=functions/api/[[catchall]].js",
-    "build:deno": "vite build && esbuild src/main.prod.deno.ts --bundle --minify --platform=neutral --outfile=dist/main.js"
+    "build:deno": "vite build && esbuild src/main.prod.deno.ts --bundle --minify --platform=neutral --outfile=dist/main.js",
+    "build:nano-edge": "vite build && esbuild src/main.prod.nano-edge.ts --bundle --minify --platform=neutral --outfile=dist/functions/api.js",
+    "deploy:nano-edge": "npm run build:nano-edge && nano-edge deploy --auth-token=tapw && echo TODO delete this run script!! better move deploy command to gh action!"
   },
   "engines": {
     "node": "22.x"
@@ -36,6 +38,7 @@
     "@hono/vite-dev-server": "^0.17.0",
     "@iconify-icons/uil": "^1.2.3",
     "@iconify/vue": "^4.2.0",
+    "@nano-edge/cli": "^1.7.1",
     "@ts-rest/open-api": "^3.51.0",
     "@types/node": "^22.10.3",
     "@vitejs/plugin-vue": "^5.2.1",
